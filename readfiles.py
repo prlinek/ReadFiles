@@ -46,8 +46,10 @@ def readFiles():
         print file_name
         readFile(file_name)
         data = numpy.array(rows, float)
-        print data
+        x.append(data)
+        # print data
 
+    return x
 
 # readFile(datapath + '/scan_down_0')
 # x = numpy.array(rows, float)
@@ -55,3 +57,6 @@ def readFiles():
 # y = numpy.array(rows, float)
 # print x + y
 readFiles()
+print x[189], "\n"
+y = x[1]
+print y[1, 1]
