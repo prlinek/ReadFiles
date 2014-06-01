@@ -4,13 +4,13 @@ import numpy
 import csv
 import glob
 import os
-#import sys
 
 datapath = '../DataPack1'
 filemask = 'scan_down_'
 
 if not os.path.isdir(datapath):
     print "Entered Data path does not exist!"
+
 
 # rows = []
 x = []
@@ -35,15 +35,14 @@ def readFiles():
     if os.path.isdir(datapath):
         print "processing a directory"
         list_of_files = glob.glob('%s/%s*' % (datapath, filemask))
-        list_of_files.sort()  # need to sort it in different way!
-        print "Number of files in directory: %d \n" % len(list_of_files)
+        list_of_files = sorted(list_of_files, key=lambda z: z[:-4])
+        # print "Number of files in directory: %d \n" % len(list_of_files)
     else:
         print "processing a list of files"
         #list_of_files = sys.argv[1:]
 
-    # y = numpy.array([])
     for file_name in list_of_files:
-        print file_name
+        # print file_name
         readFile(file_name)
         data = numpy.array(rows, float)
         x.append(data)
@@ -57,6 +56,10 @@ def readFiles():
 # y = numpy.array(rows, float)
 # print x + y
 readFiles()
-print x[189], "\n"
-y = x[1]
-print y[1, 1]
+
+# prints all data from first file
+print x[0], "\n"
+# prints first line of data from first file
+print x[0][0]  # same as y = x[1], print y[1]
+# prints first element of the first line of data from first file
+print x[0][0, 0]
